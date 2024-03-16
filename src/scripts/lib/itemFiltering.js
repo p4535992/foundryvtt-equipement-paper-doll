@@ -1,27 +1,26 @@
-import {getFilterArray} from "../settings.js";
-import {tattoosRenderOrder} from "../contants/constants.js";
+import { getFilterArray } from "../settings.js";
+import { tattoosRenderOrder } from "../constants/constants.js";
 
 export const containsAnyOfArray = (array, target) => {
-  let output = false;
-  if (array.length === 1 && array[0] === '') return output;
-  array.forEach((current) => {
-    if (target.includes(current) || current.includes(target)) output = true;
-  })
-  return output;
-}
+    let output = false;
+    if (array.length === 1 && array[0] === "") return output;
+    array.forEach((current) => {
+        if (target.includes(current) || current.includes(target)) output = true;
+    });
+    return output;
+};
 
 const itemContainsRelatedFlags = (itemsArray, slotName) => {
-  return itemsArray.reduce((acc, cur) => {
-    const flags = cur.getFlag('Equipment-Paper-Doll', 'flags')
-    if (flags && containsAnyOfArray(flags, slotName))
-      return [...acc, cur]
-    return [...acc]
-  }, [])
-}
+    return itemsArray.reduce((acc, cur) => {
+        const flags = cur.getFlag("Equipment-Paper-Doll", "flags");
+        if (flags && containsAnyOfArray(flags, slotName)) return [...acc, cur];
+        return [...acc];
+    }, []);
+};
 
 const itemsContains = (itemsArray, namesArray, slotName) => {
-  return itemContainsRelatedFlags(itemsArray, slotName)
-}
+    return itemContainsRelatedFlags(itemsArray, slotName);
+};
 
 /**
  * Returns a list of items that can be equipped
@@ -30,9 +29,9 @@ const itemsContains = (itemsArray, namesArray, slotName) => {
  * @returns {*}
  */
 const filterEquipableItems = (actorItems) => {
-  const equipableTypes = ['backpack', 'equipment', 'weapon', 'loot', 'consumable', 'tool'];
-  return actorItems.filter((item) => equipableTypes.includes(item.type));
-}
+    const equipableTypes = ["backpack", "equipment", "weapon", "loot", "consumable", "tool"];
+    return actorItems.filter((item) => equipableTypes.includes(item.type));
+};
 
 /**
  * Returns weapons and items that match the filter
@@ -42,8 +41,8 @@ const filterEquipableItems = (actorItems) => {
  * @returns {*}
  */
 const findWeaponsAndFilter = (items, filters) => {
-  return items.filter((item) => item.type === 'weapon')
-}
+    return items.filter((item) => item.type === "weapon");
+};
 
 /**
  * Returns the items that can be equipped on offhand
@@ -52,10 +51,10 @@ const findWeaponsAndFilter = (items, filters) => {
  * @returns {*}
  */
 const findOffHand = (items) => {
-  const weapons = items.filter((item) => item.type === 'weapon');
-  const secondary = itemsContains(items, getFilterArray('offHand'), 'hands');
-  return weapons.concat(secondary);
-}
+    const weapons = items.filter((item) => item.type === "weapon");
+    const secondary = itemsContains(items, getFilterArray("offHand"), "hands");
+    return weapons.concat(secondary);
+};
 
 /**
  * Returns an object with the items that can be equipped on each body part
@@ -64,26 +63,26 @@ const findOffHand = (items) => {
  * @returns {{}}
  */
 const filterActorItems = (actorItems) => {
-  const itemTypesObject = {};
-  const equipableItems = filterEquipableItems(actorItems);
-  itemTypesObject['head'] = itemsContains(equipableItems, getFilterArray('head'), 'head');
-  itemTypesObject['eyes'] = itemsContains(equipableItems, getFilterArray('eyes'), 'eyes');
-  itemTypesObject['neck'] = itemsContains(equipableItems, getFilterArray('neck'), 'neck');
-  itemTypesObject['cape'] = itemsContains(equipableItems, getFilterArray('cape'), 'cape');
-  itemTypesObject['torso'] = itemsContains(equipableItems, getFilterArray('torso'), 'torso');
-  itemTypesObject['waist'] = itemsContains(equipableItems, getFilterArray('waist'), 'waist');
-  itemTypesObject['wrists'] = itemsContains(equipableItems, getFilterArray('wrists'), 'wrists');
-  itemTypesObject['hands'] = itemsContains(equipableItems, getFilterArray('hands'), 'hands');
-  itemTypesObject['feet'] = itemsContains(equipableItems, getFilterArray('feet'), 'feet');
-  itemTypesObject['ring'] = itemsContains(equipableItems, getFilterArray('ring'), 'ring');
-  itemTypesObject['back'] = itemsContains(equipableItems, getFilterArray('back'), 'back')
-  itemTypesObject['mainHand'] = findWeaponsAndFilter(equipableItems, getFilterArray('mainHand'));
-  itemTypesObject['offHand'] = findOffHand(equipableItems);
+    const itemTypesObject = {};
+    const equipableItems = filterEquipableItems(actorItems);
+    itemTypesObject["head"] = itemsContains(equipableItems, getFilterArray("head"), "head");
+    itemTypesObject["eyes"] = itemsContains(equipableItems, getFilterArray("eyes"), "eyes");
+    itemTypesObject["neck"] = itemsContains(equipableItems, getFilterArray("neck"), "neck");
+    itemTypesObject["cape"] = itemsContains(equipableItems, getFilterArray("cape"), "cape");
+    itemTypesObject["torso"] = itemsContains(equipableItems, getFilterArray("torso"), "torso");
+    itemTypesObject["waist"] = itemsContains(equipableItems, getFilterArray("waist"), "waist");
+    itemTypesObject["wrists"] = itemsContains(equipableItems, getFilterArray("wrists"), "wrists");
+    itemTypesObject["hands"] = itemsContains(equipableItems, getFilterArray("hands"), "hands");
+    itemTypesObject["feet"] = itemsContains(equipableItems, getFilterArray("feet"), "feet");
+    itemTypesObject["ring"] = itemsContains(equipableItems, getFilterArray("ring"), "ring");
+    itemTypesObject["back"] = itemsContains(equipableItems, getFilterArray("back"), "back");
+    itemTypesObject["mainHand"] = findWeaponsAndFilter(equipableItems, getFilterArray("mainHand"));
+    itemTypesObject["offHand"] = findOffHand(equipableItems);
 
-  tattoosRenderOrder.forEach(tattoo => {
-    itemTypesObject[tattoo] = itemsContains(equipableItems, ['tattoo', 'Tattoo'], 'tattoo')
-  })
-  return itemTypesObject;
-}
+    tattoosRenderOrder.forEach((tattoo) => {
+        itemTypesObject[tattoo] = itemsContains(equipableItems, ["tattoo", "Tattoo"], "tattoo");
+    });
+    return itemTypesObject;
+};
 
-export {filterActorItems, filterEquipableItems};
+export { filterActorItems, filterEquipableItems };
