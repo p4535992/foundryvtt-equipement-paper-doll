@@ -5,11 +5,11 @@
  * @returns {HTMLAnchorElement}
  */
 export const createHeaderButton = (text) => {
-  const button = document.createElement('a')
-  button.innerHTML = text
-  button.classList.add('popout')
-  return button
-}
+    const button = document.createElement("a");
+    button.innerHTML = text;
+    button.classList.add("popout");
+    return button;
+};
 
 /**
  * Create a new HTML element with the given attributes
@@ -22,36 +22,36 @@ export const createHeaderButton = (text) => {
  * @returns {HTMLElement}
  */
 export const createHTMLElement = ({
-                                    elementName,
-                                    attributes = {},
-                                    customAttributes = {},
-                                    events = {},
-                                    children = []
-                                  }) => {
-  const element = document.createElement(elementName)
-  Object.entries(attributes).forEach(([key, value]) => {
-    element[key] = value
-  })
-  Object.entries(customAttributes).forEach(([key, value]) => {
-    element.setAttribute(key, value)
-  })
-  Object.entries(events).forEach(([eventTrigger, eventFunction]) => {
-    element.addEventListener(eventTrigger, eventFunction)
-  })
+    elementName,
+    attributes = {},
+    customAttributes = {},
+    events = {},
+    children = [],
+}) => {
+    const element = document.createElement(elementName);
+    Object.entries(attributes).forEach(([key, value]) => {
+        element[key] = value;
+    });
+    Object.entries(customAttributes).forEach(([key, value]) => {
+        element.setAttribute(key, value);
+    });
+    Object.entries(events).forEach(([eventTrigger, eventFunction]) => {
+        element.addEventListener(eventTrigger, eventFunction);
+    });
 
-  children.forEach((child) => {
-    const htmlChild = createHTMLElement(child)
+    children.forEach((child) => {
+        const htmlChild = createHTMLElement(child);
 
-    element.appendChild(htmlChild)
-  })
+        element.appendChild(htmlChild);
+    });
 
-  return element
-}
+    return element;
+};
 
 export const insertBefore = (target, element) => {
-  target?.parentNode?.insertBefore?.(element, target)
-}
+    target?.parentNode?.insertBefore?.(element, target);
+};
 
 export const insertAfter = (target, element) => {
-  target?.parentNode?.insertBefore?.(element, target.nextSibling)
-}
+    target?.parentNode?.insertBefore?.(element, target.nextSibling);
+};

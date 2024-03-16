@@ -25,22 +25,22 @@
 
 #arrow::before {
     visibility: visible;
-    content: '';
+    content: "";
     transform: rotate(45deg);
 }
 
-#popperTooltip[data-popper-placement^='top'] > #arrow {
+#popperTooltip[data-popper-placement^="top"] > #arrow {
     bottom: -4px;
 }
 
-#popperTooltip[data-popper-placement^='bottom'] > #arrow {
+#popperTooltip[data-popper-placement^="bottom"] > #arrow {
     top: -4px;
 }
 
-#popperTooltip[data-popper-placement^='left'] > #arrow {
+#popperTooltip[data-popper-placement^="left"] > #arrow {
     right: -4px;
 }
 
-#popperTooltip[data-popper-placement^='right'] > #arrow {
+#popperTooltip[data-popper-placement^="right"] > #arrow {
     left: -4px;
 }

@@ -1,206 +1,210 @@
-@mixin PaperDollApp($name: '.paperDollApp') {
-  #{$name} {
-    &__container {
-      height: 620px;
-      width: 600px;
+@mixin PaperDollApp($name: ".paperDollApp") {
+    #{$name} {
+        &__container {
+            height: 620px;
+            width: 600px;
+        }
+
+        &__tab-titles {
+            height: 30px;
+            width: 100%;
+            display: flex;
+            margin-bottom: 10px;
+            border: 1px solid #7a7971;
+            border-radius: 3px;
+        }
+
+        &__tab-wrapper {
+            height: 550px;
+        }
+
+        &__tab-title {
+            padding: 5px 10px;
+            text-overflow: ellipsis;
+            text-align: center;
+            width: 33.3%;
+            height: 100%;
+
+            transition:
+                background-color ease 250ms,
+                color ease 250ms;
+        }
+
+        &__tattoos {
+            height: 100%;
+        }
+
+        &__tab-active {
+            background: #666;
+            color: #f0f0e0;
+
+            transition:
+                background-color ease 250ms,
+                color ease 250ms;
+        }
+
+        &__closed-tab {
+            display: none;
+        }
+
+        &__secondary-items {
+            height: 15%;
+            margin: 10px 80px 0;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr;
+            align-items: center;
+        }
+
+        &__item-slots-grid {
+            height: 50%;
+            width: 100%;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: 1fr;
+            grid-gap: 3px;
+        }
+
+        &__background-image {
+            background: url("static/paperDollFigure.svg") no-repeat center;
+            background-size: contain;
+            height: 80%;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: repeat(6, 1fr);
+            align-items: center;
+            grid-gap: 5px;
+        }
+
+        &__background-image--tattoos {
+            background: url("static/paperDollFigure.svg") no-repeat center;
+            background-size: contain;
+            height: 100%;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: repeat(6, 1fr);
+            align-items: center;
+            grid-gap: 5px;
+        }
+
+        &__left-item {
+            justify-self: left;
+        }
+
+        &__right-item {
+            justify-self: right;
+
+            & > #{$name}__item-slots-grid > #{$name}__added-item > #context-menu {
+                left: -100px;
+            }
+        }
+
+        &__center-item {
+            justify-self: center;
+        }
+
+        &__category-title {
+            text-align: center;
+            height: 50%;
+            border-bottom: none;
+        }
+
+        &__filler-element {
+            border: 1px solid #000;
+            border-radius: 2px;
+            background: rgb(66, 66, 62);
+            box-shadow: 0 0 5px #000 inset;
+        }
+
+        &__added-item {
+            height: 45px;
+            width: 47px;
+            border: 1px solid #000;
+            border-radius: 2px;
+            box-shadow: 0 0 5px #000 inset;
+            cursor: pointer;
+        }
+
+        &__image-tile {
+            height: 45px;
+            width: 47px;
+        }
+
+        &__secondary-image {
+            opacity: 0.45;
+        }
+
+        &__add-box {
+            background-image: url(../../../ui/parchment.jpg);
+            height: 45px;
+            width: 45px;
+            border: 1px solid #000;
+            border-radius: 2px;
+            box-shadow: 0 0 5px #000 inset;
+            cursor: pointer;
+        }
+
+        &__inventory-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 13px;
+            margin-top: 20px;
+        }
+
+        &__inventory-slot {
+            background-image: url(../../../ui/parchment.jpg);
+            height: 55px;
+            width: 55px;
+            border: 1px solid #000;
+            border-radius: 2px;
+            box-shadow: 0 0 5px #000 inset;
+        }
+
+        &__inventory-item {
+            height: 55px;
+            width: 55px;
+            border: 1px solid #000;
+            border-radius: 2px;
+            box-shadow: 0 0 5px #000 inset;
+            cursor: pointer;
+        }
+
+        &__inventory-item-image {
+            height: 55px;
+            width: 55px;
+        }
+
+        &__inventory-equipped-image {
+            border-color: lightseagreen;
+            border-width: 3px;
+        }
+
+        &__inventory-equipped-wrapper {
+            border: none;
+        }
+
+        &__inventory-right > #context-menu {
+            left: -95px;
+        }
     }
 
-    &__tab-titles {
-      height: 30px;
-      width: 100%;
-      display: flex;
-      margin-bottom: 10px;
-      border: 1px solid #7a7971;
-      border-radius: 3px;
+    #ring {
+        grid-row: auto / span 2;
+        align-self: baseline;
+
+        & > #{$name}__item-slots-grid {
+            grid-template-rows: 1fr 1fr;
+        }
     }
 
-    &__tab-wrapper {
-      height: 550px;
+    #tattooScalp {
+        grid-column: 1 / span 2;
+        justify-self: center;
     }
-
-    &__tab-title {
-      padding: 5px 10px;
-      text-overflow: ellipsis;
-      text-align: center;
-      width: 33.3%;
-      height: 100%;
-
-      transition: background-color ease 250ms, color ease 250ms;
-    }
-
-    &__tattoos {
-      height: 100%;
-    }
-
-    &__tab-active {
-      background: #666;
-      color: #f0f0e0;
-
-      transition: background-color ease 250ms, color ease 250ms;
-    }
-
-    &__closed-tab {
-      display: none;
-    }
-
-    &__secondary-items {
-      height: 15%;
-      margin: 10px 80px 0;
-
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr;
-      align-items: center;
-    }
-
-    &__item-slots-grid {
-      height: 50%;
-      width: 100%;
-
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: 1fr;
-      grid-gap: 3px;
-    }
-
-    &__background-image {
-      background: url("static/paperDollFigure.svg") no-repeat center;
-      background-size: contain;
-      height: 80%;
-
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: repeat(6, 1fr);
-      align-items: center;
-      grid-gap: 5px;
-    }
-
-    &__background-image--tattoos {
-      background: url("static/paperDollFigure.svg") no-repeat center;
-      background-size: contain;
-      height: 100%;
-
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: repeat(6, 1fr);
-      align-items: center;
-      grid-gap: 5px;
-    }
-
-    &__left-item {
-      justify-self: left;
-    }
-
-    &__right-item {
-      justify-self: right;
-
-      & > #{$name}__item-slots-grid > #{$name}__added-item > #context-menu {
-        left: -100px;
-      }
-    }
-
-    &__center-item {
-      justify-self: center;
-    }
-
-    &__category-title {
-      text-align: center;
-      height: 50%;
-      border-bottom: none;
-    }
-
-    &__filler-element {
-      border: 1px solid #000;
-      border-radius: 2px;
-      background: rgb(66, 66, 62);
-      box-shadow: 0 0 5px #000 inset;
-    }
-
-    &__added-item {
-      height: 45px;
-      width: 47px;
-      border: 1px solid #000;
-      border-radius: 2px;
-      box-shadow: 0 0 5px #000 inset;
-      cursor: pointer;
-    }
-
-    &__image-tile {
-      height: 45px;
-      width: 47px;
-    }
-
-    &__secondary-image {
-      opacity: 0.45;
-    }
-
-    &__add-box {
-      background-image: url(../../../ui/parchment.jpg);
-      height: 45px;
-      width: 45px;
-      border: 1px solid #000;
-      border-radius: 2px;
-      box-shadow: 0 0 5px #000 inset;
-      cursor: pointer;
-    }
-
-    &__inventory-content {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 13px;
-      margin-top: 20px;
-    }
-
-    &__inventory-slot {
-      background-image: url(../../../ui/parchment.jpg);
-      height: 55px;
-      width: 55px;
-      border: 1px solid #000;
-      border-radius: 2px;
-      box-shadow: 0 0 5px #000 inset;
-    }
-
-    &__inventory-item {
-      height: 55px;
-      width: 55px;
-      border: 1px solid #000;
-      border-radius: 2px;
-      box-shadow: 0 0 5px #000 inset;
-      cursor: pointer;
-    }
-
-    &__inventory-item-image {
-      height: 55px;
-      width: 55px;
-    }
-
-    &__inventory-equipped-image {
-      border-color: lightseagreen;
-      border-width: 3px;
-    }
-
-    &__inventory-equipped-wrapper {
-      border: none;
-    }
-
-    &__inventory-right > #context-menu {
-      left: -95px;
-    }
-  }
-
-  #ring {
-    grid-row: auto / span 2;
-    align-self: baseline;
-
-    & > #{$name}__item-slots-grid {
-      grid-template-rows: 1fr 1fr;
-    }
-  }
-
-  #tattooScalp {
-    grid-column: 1 / span 2;
-    justify-self: center;
-  }
 }
 
-@include PaperDollApp()
+@include PaperDollApp();

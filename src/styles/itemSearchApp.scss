@@ -1,61 +1,61 @@
-@mixin ItemSearchApp($name: '.itemSearchApp') {
-  #{$name} {
-    &__container {
-      height: 400px;
-      width: 300px;
+@mixin ItemSearchApp($name: ".itemSearchApp") {
+    #{$name} {
+        &__container {
+            height: 400px;
+            width: 300px;
+        }
+
+        &__grid {
+            height: 90%;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-auto-flow: row;
+            grid-auto-rows: 60px;
+            overflow: scroll;
+            grid-gap: 5px;
+        }
+
+        &__internal-grid {
+            display: grid;
+            grid-template-columns: 1fr 4fr;
+            grid-template-rows: 1fr;
+            grid-gap: 2px;
+            cursor: pointer;
+
+            &:hover {
+                text-shadow: 0 0 10px red;
+            }
+
+            & > h3 {
+                margin-top: 5px;
+                margin-left: 5px;
+                border-bottom: none;
+            }
+        }
+
+        &__not-in-filter {
+            display: none;
+        }
+
+        &__no-slots {
+            position: relative;
+
+            &:after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: black;
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+        }
     }
-
-    &__grid {
-      height: 90%;
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-auto-flow: row;
-      grid-auto-rows: 60px;
-      overflow: scroll;
-      grid-gap: 5px;
+    input[type="text"]#{$name}__search-bar {
+        height: 10%;
     }
-
-    &__internal-grid {
-      display: grid;
-      grid-template-columns: 1fr 4fr;
-      grid-template-rows: 1fr;
-      grid-gap: 2px;
-      cursor: pointer;
-
-      &:hover {
-        text-shadow: 0 0 10px red;
-      }
-
-      & > h3 {
-        margin-top: 5px;
-        margin-left: 5px;
-        border-bottom: none;
-      }
-    }
-
-    &__not-in-filter {
-      display: none;
-    }
-
-    &__no-slots {
-      position: relative;
-
-      &:after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: black;
-        opacity: 0.5;
-        cursor: not-allowed;
-      }
-    }
-  }
-  input[type="text"]#{$name}__search-bar {
-    height: 10%;
-  }
 }
 
 @include ItemSearchApp();
