@@ -1,38 +1,39 @@
-export const moduleName = "Equipment-Paper-Doll";
-export const flagFields = {
-    flags: "flags",
-    data: "data",
-    personalSettings: "personalSettings",
-};
-
-export const initialSlotStructure = {
-    back: ["", "", "", ""],
-    cape: ["", "", "", ""],
-    eyes: ["", "", "", ""],
-    feet: ["", "", "", ""],
-    hands: ["", "", "", ""],
-    head: ["", "", "", ""],
-    mainHand: ["", "", "", ""],
-    neck: ["", "", "", ""],
-    offHand: ["", "", "", ""],
-    ring: ["", "", "", "", "", "", "", ""],
-    torso: ["", "", "", ""],
-    waist: ["", "", "", ""],
-    wrists: ["", "", "", ""],
-};
-
-export const tattoosSlotStructure = {
-    tattooHandLeft: ["", "", "", ""],
-    tattooHandRight: ["", "", "", ""],
-    tattooFootLeft: ["", "", "", ""],
-    tattooFootRight: ["", "", "", ""],
-    tattooArmLeft: ["", "", "", ""],
-    tattooArmRight: ["", "", "", ""],
-    tattooLegLeft: ["", "", "", ""],
-    tattooLegRight: ["", "", "", ""],
-    tattooTorso: ["", "", "", "", "", "", "", ""],
-    tattooBack: ["", "", "", "", "", "", "", ""],
-    tattooScalp: ["", "", "", ""],
+export const CONSTANTS = {
+    MODULE_ID: "equipment-paper-doll",
+    PATH: "modules/equipment-paper-doll",
+    FLAGS: {
+        FLAGS: "flags",
+        DATA: "data",
+        PERSONAL_SETTINGS: "personalSettings",
+    },
+    INITIAL_SLOT_STRUCTURE: {
+        back: ["", "", "", ""],
+        cape: ["", "", "", ""],
+        eyes: ["", "", "", ""],
+        feet: ["", "", "", ""],
+        hands: ["", "", "", ""],
+        head: ["", "", "", ""],
+        mainHand: ["", "", "", ""],
+        neck: ["", "", "", ""],
+        offHand: ["", "", "", ""],
+        ring: ["", "", "", "", "", "", "", ""],
+        torso: ["", "", "", ""],
+        waist: ["", "", "", ""],
+        wrists: ["", "", "", ""],
+    },
+    TATTOOS_SLOT_STRUCTURE: {
+        tattooHandLeft: ["", "", "", ""],
+        tattooHandRight: ["", "", "", ""],
+        tattooFootLeft: ["", "", "", ""],
+        tattooFootRight: ["", "", "", ""],
+        tattooArmLeft: ["", "", "", ""],
+        tattooArmRight: ["", "", "", ""],
+        tattooLegLeft: ["", "", "", ""],
+        tattooLegRight: ["", "", "", ""],
+        tattooTorso: ["", "", "", "", "", "", "", ""],
+        tattooBack: ["", "", "", "", "", "", "", ""],
+        tattooScalp: ["", "", "", ""],
+    },
 };
 
 export const tattoosRenderOrder = [

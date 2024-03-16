@@ -2,7 +2,7 @@ import { createImageTile } from "../lib/imageTile.js";
 import "../libs/popperJs/popper.min.js";
 import { linkWithTooltip } from "../lib/tooltips.js";
 import { itemSearchAppData } from "../components/itemSearchApp.js";
-import { flagFields, itemEquippedPath, moduleName, shadowItemModifier } from "../constants/constants.js";
+import { CONSTANTS, itemEquippedPath, shadowItemModifier } from "../constants/constants.js";
 import { allEquippedItems, availableSlots } from "../constants/commonQuerries.js";
 import {
     addBoxClass,
@@ -28,7 +28,7 @@ export default class itemSearchApp extends FormApplication {
         return {
             ...super.defaultOptions,
             ...itemSearchAppData,
-            template: "modules/Equipment-Paper-Doll/templates/itemSearchApp.hbs",
+            template: "modules/equipment-paper-doll/templates/itemSearchApp.hbs",
         };
     }
 
@@ -41,7 +41,7 @@ export default class itemSearchApp extends FormApplication {
         const sourceSlot = this.source.target.parentElement.parentElement.id;
 
         return this.allItems.reduce((acc, cur) => {
-            const allFlags = cur.getFlag(moduleName, flagFields.flags);
+            const allFlags = cur.getFlag(CONSTANTS.MODULE_ID, CONSTANTS.FLAGS.FLAGS);
             const flagForSlot = allFlags.find((flag) => flag.split(",")[0].includes(sourceSlot));
             this.flagsForSlot.push(flagForSlot ?? "");
             if (!flagForSlot) return [...acc, 1];

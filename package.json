@@ -1,7 +1,7 @@
 {
 	"name": "equipment-paper-doll",
-	"title": "FoundryVTT Arms Reach",
-	"description": "Allows the GM to limit the distance that a player can interacted with a placeable object like door, journal, stairway, token, ecc..",
+	"title": "Equipment Paper Doll",
+	"description": "Equipment Paper Doll is a module that offers an immersive interface for equipping items on your actors.",
 	"version": "2.3.4",
 	"main": "module.js",
 	"license": "SEE LICENSE IN LICENSE",

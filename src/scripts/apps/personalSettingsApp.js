@@ -3,7 +3,7 @@ import itemSearchApp from "./itemSearchApp.js";
 import { createHTMLElement } from "../lib/headerButtonCreater.js";
 import { addBoxComponent, fillerElementComponent } from "../components/paperDollScreen.js";
 import { slotNames, weaponSlotNames } from "../constants/slotNames.js";
-import { flagFields, moduleName } from "../constants/constants.js";
+import { CONSTANTS } from "../constants/constants.js";
 import { personalSettingsAppData } from "../components/personalSettingsApp.js";
 import {
     imagePathInputField,
@@ -44,7 +44,7 @@ export default class personalSettingsApp extends FormApplication {
         super();
         this.itemSlotNames = [...slotNames, ...weaponSlotNames];
         this.sourceActor = sourceActor;
-        this.currentSlotSettings = sourceActor.getFlag(moduleName, flagFields.personalSettings);
+        this.currentSlotSettings = sourceActor.getFlag(CONSTANTS.MODULE_ID, CONSTANTS.FLAGS.PERSONAL_SETTINGS);
         this.filteredItems = filteredItems;
         this.allItems = allItems;
         this.slotStructure = slotStructure;
@@ -54,7 +54,7 @@ export default class personalSettingsApp extends FormApplication {
         return {
             ...super.defaultOptions,
             ...personalSettingsAppData,
-            template: "modules/Equipment-Paper-Doll/templates/personalSettingsApp.hbs",
+            template: "modules/equipment-paper-doll/templates/personalSettingsApp.hbs",
         };
     }
 
@@ -159,7 +159,7 @@ export default class personalSettingsApp extends FormApplication {
                 });
             }
         });
-        await this.sourceActor.setFlag(moduleName, flagFields.personalSettings, formattedFromData);
+        await this.sourceActor.setFlag(CONSTANTS.MODULE_ID, CONSTANTS.FLAGS.PERSONAL_SETTINGS, formattedFromData);
     }
 
     /**

@@ -2,7 +2,7 @@ import { attributeToFlagMap } from "../constants/flagMaps.js";
 import { allSlots, weaponSlotNames } from "../constants/slotNames.js";
 import { getFilterArray } from "../settings.js";
 import { containsAnyOfArray } from "./itemFiltering.js";
-import { flagFields, moduleName } from "../constants/constants.js";
+import { CONSTANTS } from "../constants/constants.js";
 
 const tattooRarityMap = {
     common: 1,
@@ -38,7 +38,7 @@ export const extractFlagsFromItemName = (item) => {
 };
 
 export const getCurrentFlagForItem = (item, sourceSlot) => {
-    const allFlags = item.getFlag(moduleName, flagFields.flags);
+    const allFlags = item.getFlag(CONSTANTS.MODULE_ID, CONSTANTS.FLAGS.FLAGS);
 
     return allFlags.find((flag) => flag.split(",")[0].includes(sourceSlot));
 };

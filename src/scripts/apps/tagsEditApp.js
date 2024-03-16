@@ -1,6 +1,6 @@
 import { extractFlags, extractFlagsFromItemName } from "../lib/flagUtils.js";
 import { createHTMLElement } from "../lib/headerButtonCreater.js";
-import { flagFields, moduleName } from "../constants/constants.js";
+import { CONSTANTS } from "../constants/constants.js";
 import { flagComponent, tagsEditAppData } from "../components/tagsEditApp.js";
 import { addFlagButton, flagTitle, removeFlagButtonClass } from "../constants/objectClassNames.js";
 import { allSlots } from "../constants/slotNames.js";
@@ -12,7 +12,9 @@ export default class TagsEditApp extends FormApplication {
     constructor(item) {
         super();
         this.currentFlags = new Set(
-            Array.isArray(item.getFlag(moduleName, flagFields.flags)) ? item.getFlag(moduleName, flagFields.flags) : [],
+            Array.isArray(item.getFlag(CONSTANTS.MODULE_ID, CONSTANTS.FLAGS.FLAGS))
+                ? item.getFlag(CONSTANTS.MODULE_ID, CONSTANTS.FLAGS.FLAGS)
+                : [],
         );
         this.item = item;
         if (this.currentFlags.size === 0) this.addExtractedFlags();
@@ -31,7 +33,7 @@ export default class TagsEditApp extends FormApplication {
         return {
             ...super.defaultOptions,
             ...tagsEditAppData,
-            template: "modules/Equipment-Paper-Doll/templates/tagsEditApp.hbs",
+            template: "modules/equipment-paper-doll/templates/tagsEditApp.hbs",
         };
     }
 
@@ -68,7 +70,7 @@ export default class TagsEditApp extends FormApplication {
 
         this.currentFlags.delete(lastFlagInData);
         this.currentFlags.add(`${lastFlagInData}, ${newFlagContent}`);
-        this.item.setFlag(moduleName, flagFields.flags, [...this.currentFlags]);
+        this.item.setFlag(CONSTANTS.MODULE_ID, CONSTANTS.FLAGS.FLAGS, [...this.currentFlags]);
         lastFlagTitle.innerText += `, ${newFlagContent}`;
     }
 
@@ -91,11 +93,11 @@ export default class TagsEditApp extends FormApplication {
                 this.form.querySelector(".tagsEditApp__flag-container").appendChild(newFlagWrapper);
 
             this.currentFlags.add(newFlag);
-            this.item.setFlag(moduleName, flagFields.flags, [...this.currentFlags]);
+            this.item.setFlag(CONSTANTS.MODULE_ID, CONSTANTS.FLAGS.FLAGS, [...this.currentFlags]);
         } else if (event.submitter.classList.value === removeFlagButtonClass) {
             this.currentFlags.delete(event.submitter.id);
             event.submitter.parentElement.remove();
-            this.item.setFlag(moduleName, flagFields.flags, [...this.currentFlags]);
+            this.item.setFlag(CONSTANTS.MODULE_ID, CONSTANTS.FLAGS.FLAGS, [...this.currentFlags]);
         }
     }
 

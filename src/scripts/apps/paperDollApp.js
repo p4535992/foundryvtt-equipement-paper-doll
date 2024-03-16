@@ -8,11 +8,9 @@ import { extractFlags, extractFlagsFromItemName, getCurrentFlagForItem } from ".
 import itemSearchApp from "./itemSearchApp.js";
 import { createHeaderButton, createHTMLElement, insertBefore } from "../lib/headerButtonCreater.js";
 import {
-    flagFields,
-    initialSlotStructure,
+    CONSTANTS,
     inventorySlotsStep,
     itemEquippedPath,
-    moduleName,
     openSettingsButtonName,
     shadowItemModifier,
     tattoosRenderOrder,
@@ -56,7 +54,7 @@ import { linkWithTooltip } from "../lib/tooltips.js";
  * @returns {string}
  */
 const getBackgroundImageFromActorFlags = (sourceActor) => {
-    const actorFlags = sourceActor.getFlag(moduleName, flagFields.personalSettings);
+    const actorFlags = sourceActor.getFlag(CONSTANTS.MODULE_ID, CONSTANTS.FLAGS.PERSONAL_SETTINGS);
     return (
         actorFlags?.filter?.((obj) => obj.name === "imageUrl")?.[0]?.value ||
         `./${actorFlags?.filter((obj) => obj.name === "image")?.[0]?.value ?? ""}`
@@ -68,7 +66,8 @@ export default class PaperDollApp extends FormApplication {
         super();
         this.sourceActor = sourceActor;
         this.items = sourceActor.items;
-        this.selectedItems = this.sourceActor.getFlag(moduleName, flagFields.data) ?? initialSlotStructure;
+        this.selectedItems =
+            this.sourceActor.getFlag(CONSTANTS.MODULE_ID, CONSTANTS.FLAGS.DATA) ?? CONSTANTS.INITIAL_SLOT_STRUCTURE;
         this.equipableItems = filterEquipableItems(this.items);
 
         this.flagEquippedItems().then(() => {
@@ -84,9 +83,9 @@ export default class PaperDollApp extends FormApplication {
      */
     async flagEquippedItems() {
         for (const item of [...this.items]) {
-            if (Array.isArray(item.getFlag(moduleName, flagFields.flags))) continue;
+            if (Array.isArray(item.getFlag(CONSTANTS.MODULE_ID, CONSTANTS.FLAGS.FLAGS))) continue;
 
-            await item.setFlag(moduleName, flagFields.flags, [
+            await item.setFlag(CONSTANTS.MODULE_ID, CONSTANTS.FLAGS.FLAGS, [
                 ...extractFlags(item),
                 ...extractFlagsFromItemName(item),
             ]);
@@ -108,7 +107,7 @@ export default class PaperDollApp extends FormApplication {
         return {
             ...super.defaultOptions,
             ...paperDollWindowData,
-            template: "modules/Equipment-Paper-Doll/templates/paperDollApp.hbs",
+            template: "modules/equipment-paper-doll/templates/paperDollApp.hbs",
         };
     }
 
@@ -211,7 +210,7 @@ export default class PaperDollApp extends FormApplication {
     async _updateObject(event, formData) {
         formData = this.extractDataFromForm();
 
-        await this.sourceActor.setFlag(moduleName, flagFields.data, formData);
+        await this.sourceActor.setFlag(CONSTANTS.MODULE_ID, CONSTANTS.FLAGS.DATA, formData);
     }
 
     /**
